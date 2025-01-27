@@ -25,6 +25,6 @@
       name: firewalld
       enabled: no
   - name: uninstall firewalld package
-    yum:
+    package:
       name: firewalld
       state: absent
