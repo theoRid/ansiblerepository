@@ -16,10 +16,6 @@
     yum:
       name: httpd
       state: absent
-  -name: stop firewalld service
-    service:
-      name: firewalld
-      state: stopped
   - name: uninstall firewalld package
     yum:
       name: firewalld
