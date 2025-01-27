@@ -17,7 +17,7 @@
       name: httpd
       state: absent
   - name: remove firewalld packages
-    services:
+    yum:
       name: firewalld
       state: absent
   - name: restart firewall
