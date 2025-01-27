@@ -16,7 +16,3 @@
     yum:
       name: httpd
       state: absent
- - name: Restart the firewalld service to load in the firewall changes
-    service: 
-      name: firewalld 
-      state: restarted
