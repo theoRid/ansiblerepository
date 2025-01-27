@@ -2,7 +2,6 @@
 - name: This sets up an httpd webserver
   hosts: web
   tasks:
- 
   - name: Close port 80 for http access
     firewalld:
       service: http
