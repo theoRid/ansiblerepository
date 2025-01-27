@@ -1,6 +1,6 @@
 ---
 - name: This sets up an httpd webserver
-  hosts: 192.168.50.69
+  hosts: web
   tasks:
   - name: Restart the firewalld service to load in the firewall changes
     service: 
