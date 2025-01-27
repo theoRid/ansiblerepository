@@ -1,0 +1,8 @@
+---
+- name: This is a helloworld sample
+  hosts: 192.168.50.69
+  tasks:
+    - name: Hello Message
+      copy:
+        content: hello world /n
+        dest: /tmp/testfile.txt

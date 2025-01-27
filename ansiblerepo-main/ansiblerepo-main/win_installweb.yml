@@ -1,0 +1,8 @@
+---
+- name: This will install webserver
+  hosts: winserver1
+  tasks:
+  - name: Install IIS
+    ansible.windows.win_feature:
+      name: Hyper-V
+      state: present

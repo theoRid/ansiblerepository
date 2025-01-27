@@ -1,0 +1,20 @@
+---
+- name: Create a VM Snapshot
+  hosts: localhost
+  connection: local
+  gather_facts: no
+#  collections:
+#    - requirements
+  tasks:
+    - name: Creating snapshot
+      community.vmware.vmware_guest_snapshot:
+        hostname: 192.168.50.10
+        username: administrator@vsphere.local
+        password: P@ssw0rd
+        datacenter: "Huawei"
+        folder: "/Red Hat/"
+        name: "RHEL 9 KVM 1"
+        state: present
+        snapshot_name: "newsnapshot"
+        validate_certs: false
+  #      delegate_to: localhost

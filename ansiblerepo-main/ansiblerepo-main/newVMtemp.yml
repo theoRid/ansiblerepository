@@ -1,0 +1,28 @@
+---
+- name: deploy vm from template demo
+  hosts: localhost
+  become: false
+  gather_facts: false
+  collections:
+    - community.vmware
+  tasks:
+    - name: create folder
+      vcenter_folder:
+        hostname: "192.168.50.10"
+        username: "administrator@vsphere.local"
+        password: "P@ssw0rd"
+        validate_certs: "false"
+        datacenter_name: "Huawei"
+        folder_name: "newvm"
+        folder_type: vm
+        state: present
+    - name: clone VM
+      vmware_guest:
+        hostname: "192.168.50.10"
+        username: "administrator@vsphere.local"
+        password: "P@ssw0rd"
+        validate_certs: "false"
+        datacenter_name: "Solution Center"
+        name: "newvm"
+        folder: "newvm"
+        template: "rheltemplate"

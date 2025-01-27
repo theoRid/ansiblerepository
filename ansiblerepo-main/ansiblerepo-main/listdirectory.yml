@@ -1,0 +1,12 @@
+---
+- name: This is a directory list script
+  hosts: server1
+  become: yes
+  #become_user: 
+  #sudoer: yes
+  tasks:
+    - name: List files in home directory
+      shell: 'ls -l /'
+      register: command_output
+    - debug:
+        var: command_output.stoud_lines

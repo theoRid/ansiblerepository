@@ -1,0 +1,10 @@
+---
+- name: This update a rhel server
+  hosts: rhelvms
+  tasks:
+  - name: Update all package
+    yum:
+      name: '*'
+      state: latest
+      disable_gpg_check: true
+ 

@@ -1,0 +1,9 @@
+---
+- name: This task will copy a single folder
+  hosts: winserver1
+  tasks:
+  - name: Copy a single folder
+    ansible.windows.win_copy:
+      src: C:\Users\Administrator\Desktop\Sample
+      dest: C:\Users\Administrator\Desktop\Sample_BAK
+      remote_src: yes

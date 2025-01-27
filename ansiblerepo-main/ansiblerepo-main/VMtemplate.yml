@@ -1,0 +1,18 @@
+---
+- name: Create a VM from a template
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+  - name: Clone the template
+    vmware_guest:
+      hostname: 192.168.50.10
+      username: administrator@vsphere.local
+      password: P@ssw0rd
+      validate_certs: False
+      name: testvm_2
+      template: rheltemplate
+      datacenter: "Huawei"
+      folder: "/Red Hat"
+      state: poweredon
+      wait_for_ip_address: yes

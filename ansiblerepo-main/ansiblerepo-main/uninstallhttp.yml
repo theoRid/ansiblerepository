@@ -1,0 +1,21 @@
+---
+- name: This sets up an httpd webserver
+  hosts: 192.168.50.69
+  tasks:
+  - name: Restart the firewalld service to load in the firewall changes
+    service: 
+      name: firewalld 
+      state: restarted
+  - name: Close port 80 for http access
+    firewalld:
+      service: http
+      permanent: true
+      state: disabled
+  - name: stop http
+    service:
+      name: httpd 
+      state: stopped
+  - name: Uninstall apache packages 
+    yum:
+      name: httpd
+      state: absent

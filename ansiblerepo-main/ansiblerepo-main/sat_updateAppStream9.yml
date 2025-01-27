@@ -1,0 +1,12 @@
+---
+ - name: "Sync Red Hat repository"
+   hosts: rhsatellite
+   tasks:
+   - name: "Sync Red Hat repository"
+     redhat.satellite.repository_sync:
+        server_url: "https://rhelsatellite.mf.local"
+        username: "admin"
+        password: "redhat"
+        repository: "Red Hat Enterprise Linux 9 for x86_64 - AppStream RPMs 9"
+        product: "Red Hat Enterprise Linux for x86_64"
+        organization: "VSTECS_Phils_Inc"
