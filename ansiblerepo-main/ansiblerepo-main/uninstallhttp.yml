@@ -20,7 +20,6 @@
     service:
       name: firewalld
       state: stopped
-      enabled: no
   - name: uninstall firewalld package
     yum:
       name: firewalld
