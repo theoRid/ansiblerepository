@@ -31,3 +31,6 @@
       yum:
         name: fuse
         state: latest
+  - name: Ensure KVM modules are loaded
+      command: modprobe kvm
+      when: ansible_facts['processor'] is defined
