@@ -1,14 +1,10 @@
 ---
-- name: This sets up an httpd webserver
-  hosts: web
+- name: Install and configure KVM on CentOS/RHEL-based systems
+  hosts: kvm_hosts
   become: yes
- tasks:
-    - name: Ensure the system is up-to-date
-      yum:
-        name: kvm
-        state: latest
-        update_cache: yes
-    - name: Install KVM packages
+  tasks:
+
+    - name: Install necessary KVM packages
       yum:
         name:
           - qemu-kvm
@@ -17,40 +13,54 @@
           - bridge-utils
           - virt-manager
         state: present
-    - name: Ensure libvirt service is enabled and started
+
+    - name: Ensure libvirtd service is enabled and started
       service:
         name: libvirtd
         state: started
         enabled: yes
-    - name: Add user to libvirt group (for managing KVM as non-root user)
+
+    - name: Add user to libvirt group
       user:
         name: "{{ ansible_user }}"
-        group: libvirt
+        groups: libvirt
         append: yes
-    - name: Verify that KVM modules are loaded
-      command: lsmod | grep kvm
-      register: kvm_modules
-      failed_when: kvm_modules.stdout == ""
-    - name: Ensure that the network bridge interface is configured
+
+    - name: Enable IP forwarding (for bridged networking)
+      sysctl:
+        name: net.ipv4.ip_forward
+        value: "1"
+        state: present
+        reload: yes
+
+    - name: Configure the firewall for KVM
+      firewalld:
+        service: "{{ item }}"
+        permanent: true
+        state: enabled
+      loop:
+        - libvirt
+        - dhcp
+        - ssh
+
+    - name: Ensure bridge-utils is installed (for network bridging)
+      yum:
+        name: bridge-utils
+        state: present
+
+    - name: Set up a default network bridge configuration (bridge network)
       copy:
         dest: /etc/sysconfig/network-scripts/ifcfg-br0
         content: |
           TYPE=Bridge
-          BOOTPROTO=dhcp
+          NAME=br0
           DEVICE=br0
           ONBOOT=yes
+          BOOTPROTO=dhcp
           DELAY=0
-          NM_CONTROLLED=no
       notify:
         - Restart network service
-    - name: Ensure bridged network is configured
-      command: nmcli connection add type bridge con-name br0 ifname br0
-      ignore_errors: yes
-    - name: Start and enable the network service
-      service:
-        name: network
-        state: restarted
-        enabled: yes
+
   handlers:
     - name: Restart network service
       service:
