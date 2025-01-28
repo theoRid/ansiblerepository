@@ -1,5 +1,5 @@
 ---
-- name: Install and configure KVM on CentOS/RHEL-based systems
+- name: Install and configure KVM on RHEL
   hosts: web
   become: yes
   tasks:
@@ -10,6 +10,7 @@
           - qemu-kvm
           - libvirt
           - virt-install
+          - virt-viewer
           - bridge-utils
           - virt-manager
         state: present
@@ -25,44 +26,3 @@
         name: "{{ ansible_user }}"
         groups: libvirt
         append: yes
-
-    - name: Enable IP forwarding (for bridged networking)
-      sysctl:
-        name: net.ipv4.ip_forward
-        value: "1"
-        state: present
-        reload: yes
-
-    - name: Configure the firewall for KVM
-      firewalld:
-        service: "{{ item }}"
-        permanent: true
-        state: enabled
-      loop:
-        - libvirt
-        - dhcp
-        - ssh
-
-    - name: Ensure bridge-utils is installed (for network bridging)
-      yum:
-        name: bridge-utils
-        state: present
-
-    - name: Set up a default network bridge configuration (bridge network)
-      copy:
-        dest: /etc/sysconfig/network-scripts/ifcfg-br0
-        content: |
-          TYPE=Bridge
-          NAME=br0
-          DEVICE=br0
-          ONBOOT=yes
-          BOOTPROTO=dhcp
-          DELAY=0
-      notify:
-        - Restart network service
-
-  handlers:
-    - name: Restart network service
-      service:
-        name: network
-        state: restarted
