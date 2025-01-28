@@ -1,6 +1,6 @@
 ---
 - name: Install and configure KVM on CentOS/RHEL-based systems
-  hosts: kvm_hosts
+  hosts: web
   become: yes
   tasks:
 
