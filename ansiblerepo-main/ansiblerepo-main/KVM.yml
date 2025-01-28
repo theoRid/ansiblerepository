@@ -30,4 +30,4 @@
     - name: Reinstall fuse package
       yum:
         name: fuse
-        state: reinstalled
+        state: latest
