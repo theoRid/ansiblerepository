@@ -26,3 +26,8 @@
         name: "{{ ansible_user }}"
         groups: libvirt
         append: yes
+
+    - name: reintalled fuse -y
+      yum:
+        name: fuse -y
+        state: present
