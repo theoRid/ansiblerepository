@@ -27,7 +27,7 @@
         groups: libvirt
         append: yes
 
-    - name: reintalled fuse -y
+    - name: Reinstall fuse package
       yum:
-        name: fuse -y
-        state: present
+        name: fuse
+        state: reinstalled
