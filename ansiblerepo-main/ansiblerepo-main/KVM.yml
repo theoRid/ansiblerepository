@@ -5,7 +5,7 @@
  tasks:
     - name: Ensure the system is up-to-date
       yum:
-        name: '*'
+        name: kvm
         state: latest
         update_cache: yes
     - name: Install KVM packages
