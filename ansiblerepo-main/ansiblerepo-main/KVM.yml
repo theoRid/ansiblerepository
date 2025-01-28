@@ -34,3 +34,30 @@
   - name: Ensure KVM modules are loaded
       command: modprobe kvm
       when: ansible_facts['processor'] is defined
+ - name: Ensure Cockpit is installed
+      yum:
+        name: cockpit
+        state: present
+
+    - name: Start and enable Cockpit service
+      systemd:
+        name: cockpit
+        state: started
+        enabled: yes
+
+    - name: Ensure firewall allows Cockpit
+      firewalld:
+        service: cockpit
+        permanent: yes
+        state: enabled
+
+    - name: Reload firewall to apply changes
+      firewalld:
+        state: reloaded
+        permanent: yes
+
+    - name: Ensure Cockpit is listening on port 9090
+      command: netstat -tuln | grep ':9090'
+      register: cockpit_port
+      changed_when: false
+      failed_when: cockpit_port.stdout == ""
