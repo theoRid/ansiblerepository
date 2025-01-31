@@ -32,7 +32,7 @@
         state: present
 
     - name: Start and enable Cockpit service
-      systemd:
+      service:
         name: cockpit
         state: started
         enabled: yes
