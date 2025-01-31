@@ -30,7 +30,7 @@
       yum:
         name: cockpit
         state: present
-        enablerepo: "rhel-7-server-extras-rpms" 
+        enablerepo: rhel-7-server-extras-rpms
 
     - name: Install Cockpit package
       yum:
