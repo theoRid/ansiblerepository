@@ -31,11 +31,10 @@
         name: cockpit
         state: present
 
-    - name: Start and enable Cockpit service
+  - name: Start and enable Cockpit service
       service:
         name: cockpit
         state: started
-        enabled: yes
 
     - name: Ensure firewall allows Cockpit
       firewalld:
