@@ -42,11 +42,8 @@
         name: cockpit
         enabled: yes
         state: started
+         immediate: yes
 
- - name: Open the Cockpit service port in the firewall (port 9090)
-      firewalld:
-        service: cockpit
-        permanent: yes
-        state: enabled
-        immediate: yes
+
+       
    
