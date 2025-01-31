@@ -35,6 +35,7 @@
       service:
         name: cockpit
         state: started
+         enabled: yes
 
     - name: Ensure firewall allows Cockpit
       firewalld:
