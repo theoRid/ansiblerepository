@@ -49,4 +49,4 @@
         permanent: yes
         state: enabled
         immediate: yes
-      when: ansible_facts['ansible_os_family'] == 'RedHat'
+   
