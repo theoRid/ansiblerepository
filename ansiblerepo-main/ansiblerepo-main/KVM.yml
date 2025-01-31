@@ -42,3 +42,10 @@
         name: cockpit
         enabled: yes
         state: started
+ - name: Open the Cockpit service port in the firewall (port 9090)
+      firewalld:
+        service: cockpit
+        permanent: yes
+        state: enabled
+        immediate: yes
+      when: ansible_facts['ansible_os_family'] == 'RedHat'
