@@ -21,19 +21,11 @@
         state: started
         enabled: yes
 
-    - name: Add user to libvirt group
-      user:
-        name: "{{ ansible_user }}"
-        groups: libvirt
-        append: yes
-
     - name: Reinstall fuse package
       yum:
         name: fuse
         state: latest
-  - name: Ensure KVM modules are loaded
-      command: modprobe kvm
-      when: ansible_facts['processor'] is defined
+
  - name: Ensure Cockpit is installed
       yum:
         name: cockpit
