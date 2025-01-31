@@ -26,24 +26,19 @@
         name: fuse
         state: latest
 
- - name: Ensure Cockpit is installed
+       - name: Ensure Cockpit repository is enabled (for CentOS/RHEL 7)
+      yum:
+        name: cockpit
+        state: present
+        enablerepo: "rhel-7-server-optional-rpms" # Add appropriate repo if needed.
+
+    - name: Install Cockpit package
       yum:
         name: cockpit
         state: present
 
-  - name: Start and enable Cockpit service
-      service:
+    - name: Enable Cockpit service
+      systemd:
         name: cockpit
+        enabled: yes
         state: started
-         enabled: yes
-
-    - name: Ensure firewall allows Cockpit
-      firewalld:
-        service: cockpit
-        permanent: yes
-        state: enabled
-
-    - name: Reload firewall to apply changes
-      firewalld:
-        state: reloaded
-        permanent: yes
