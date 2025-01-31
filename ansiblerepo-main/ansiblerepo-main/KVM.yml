@@ -26,11 +26,11 @@
         name: fuse
         state: latest
 
-         - name: Ensure Cockpit repository is enabled
+    - name: Ensure Cockpit repository is enabled (RHEL 7)
       yum:
         name: cockpit
         state: present
-    
+        enablerepo: "rhel-7-server-extras-rpms"
 
     - name: Install Cockpit package
       yum:
