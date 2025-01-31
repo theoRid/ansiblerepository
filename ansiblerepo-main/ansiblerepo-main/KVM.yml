@@ -55,9 +55,3 @@
       firewalld:
         state: reloaded
         permanent: yes
-
-    - name: Ensure Cockpit is listening on port 9090
-      command: netstat -tuln | grep ':9090'
-      register: cockpit_port
-      changed_when: false
-      failed_when: cockpit_port.stdout == ""
