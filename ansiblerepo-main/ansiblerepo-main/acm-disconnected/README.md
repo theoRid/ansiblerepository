@@ -1,7 +1,7 @@
 Set up the required multicluster egine configurations in the ACM Hub cluster
 Follow instructions in https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.13/html/install/installing#install-on-disconnected-networks to install the Red Hat Advanced Cluster Management for Kubernetes on the disconnected OpenShift cluster
 We will need to host rhcos-live-rootfs.x86_64.img and rhcos-4.18.1-x86_64-live.x86_64.iso either on a Apache Web Server or in a S3 Object Storage Bucket so that it can be download
-The files can be download from link1 and link2 respectively
+The files can be download from [link1](https://mirror.openshift.com/pub/openshift-v4/amd64/dependencies/rhcos/4.18/4.18.1/rhcos-live-rootfs.x86_64.img) and link2 https://mirror.openshift.com/pub/openshift-v4/amd64/dependencies/rhcos/4.18/4.18.1/rhcos-live.x86_64.iso respectively
  
 The Central Infrastructure Management (CIM) Service is part of the Multicluster Engine Operator, and it needs to be enabled as it runs the Assisted Installer
 Ensure that relevant ports are open
