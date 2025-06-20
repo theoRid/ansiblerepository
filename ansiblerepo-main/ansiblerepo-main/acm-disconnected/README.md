@@ -7,9 +7,11 @@ The Central Infrastructure Management (CIM) Service is part of the Multicluster 
 Ensure that relevant ports are open
     $ sudo ss -tuln | grep -E ':67|:68|:69|:80|:123|:5050|:5051|:6180|:6183|:6385|:6388|:8080|:8083|:9999'
     $ sudo firewall-cmd --list-ports
+    
 Enable the CIM by configuring AgentServiceConfig
     $ oc project multicluster-engine
     $ oc create -f agent-service-config.yaml
+    
 Check that the pods are up and running properly
     $ oc get pods -n multicluster-engine | grep -i assisted-service
     $ oc get pods -n multicluster-engine | grep -i assisted-image-service
