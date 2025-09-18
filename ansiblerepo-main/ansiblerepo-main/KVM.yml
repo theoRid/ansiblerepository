@@ -11,6 +11,7 @@
           - libvirt
           - virt-install
           - virt-viewer
+          - virt-manager
         state: present
 
     - name: Ensure libvirtd service is enabled and started
