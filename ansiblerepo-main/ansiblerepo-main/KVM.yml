@@ -24,7 +24,7 @@
         name: fuse
         state: latest
 
-    - name: Ensure Cockpit repository is enabled (RHEL 7)
+    - name: Ensure Cockpit repository is enabled (RHEL 8)
       yum:
         name: cockpit
         state: present
