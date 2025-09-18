@@ -5,7 +5,7 @@
   tasks:
 
     - name: Install necessary KVM packages
-      yum:
+      dnf:
         name:
           - qemu-kvm
           - libvirt
@@ -30,7 +30,7 @@
       yum:
         name: cockpit
         state: present
-        enablerepo: "rhel-7-server-extras-rpms"
+        enablerepo: "rhel-8-for-x86_64-baseos-rpms"
 
     - name: Install Cockpit package
       yum:
