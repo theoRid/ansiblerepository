@@ -26,7 +26,7 @@
         state: latest
 
     - name: Ensure Cockpit repository is enabled (RHEL 8)
-      yum:
+      dnf:
         name: cockpit
         state: present
         enablerepo: "rhel-8-for-x86_64-baseos-rpms"
