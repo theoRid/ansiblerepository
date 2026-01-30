@@ -1,6 +1,6 @@
 ---
 - name: This sets up an httpd webserver
-  hosts: rhserver2
+  hosts: web
   tasks:
   - name: Install apache packages 
     yum:
